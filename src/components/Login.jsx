@@ -1,4 +1,7 @@
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../../api'; // importe o arquivo que criamos
 
 const Title = styled.Text`
   font-size: 24px;
@@ -11,7 +14,7 @@ const Title = styled.Text`
 const Form = styled.View`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 `;
 
 const LabelContent = styled.View`
@@ -45,25 +48,78 @@ const ButtonFormText = styled.Text`
   font-family: ${(props) => props.font};
 `;
 
-export function Login({ font }) {
-    return (
-        <>
-            <Title font={font}>Login</Title>
-            <Form>
-                <LabelContent>
-                    <Label font={font}>Email:</Label>
-                    <Input font={font} placeholder="Digite seu email" />
-                </LabelContent>
+export function Login({ font, navigation, onLoginSuccess }) {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [loading, setLoading] = useState(false);
 
-                <LabelContent>
-                    <Label font={font}>Senha:</Label>
-                    <Input font={font} placeholder="Digite sua senha" secureTextEntry />
-                </LabelContent>
+  const handleLogin = async () => {
+  if (!email || !senha) {
+    alert('Preencha todos os campos');
+    return;
+  }
 
-                <ButtonForm>
-                    <ButtonFormText font={font}>Entrar</ButtonFormText>
-                </ButtonForm>
-            </Form>
-        </>
-    );
+  setLoading(true);
+  try {
+    const response = await api.post('/auth/login', { email, senha });
+
+    if (response.status === 200) {
+      const { token } = response.data;
+      await AsyncStorage.setItem('@token', token); 
+      console.log('Token salvo:', token);
+      
+      // Navegar para dashboard
+      navigation.replace('Dashboard'); // substitui a tela de login
+      
+      if (onLoginSuccess) onLoginSuccess(token);
+    } else if (response.status === 403) {
+      alert('Acesso proibido: verifique suas credenciais.');
+    } else {
+      alert('Erro no login: ' + (response.data?.message || 'Tente novamente.'));
+    }
+  } catch (error) {
+    console.log('Erro no login:', error.response?.data || error.message);
+    alert('Falha na conexão com a API.');
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+  return (
+    <>
+      <Title font={font}>Login</Title>
+      <Form>
+        <LabelContent>
+          <Label font={font}>Email:</Label>
+          <Input
+            font={font}
+            placeholder="Digite seu email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={setEmail}
+          />
+        </LabelContent>
+
+        <LabelContent>
+          <Label font={font}>Senha:</Label>
+          <Input
+            font={font}
+            placeholder="Digite sua senha"
+            secureTextEntry
+            autoCapitalize="none"
+            value={senha}
+            onChangeText={setSenha}
+          />
+        </LabelContent>
+
+        <ButtonForm onPress={handleLogin} disabled={loading}>
+          <ButtonFormText font={font}>
+            {loading ? 'Carregando...' : 'Entrar'}
+          </ButtonFormText>
+        </ButtonForm>
+      </Form>
+    </>
+  );
 }

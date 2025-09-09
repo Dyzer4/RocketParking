@@ -1,4 +1,6 @@
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
+import api from '../../api'; // nossa instância do Axios com JWT
 
 const Title = styled.Text`
   font-size: 24px;
@@ -11,7 +13,7 @@ const Title = styled.Text`
 const Form = styled.View`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 `;
 
 const LabelContent = styled.View`
@@ -45,30 +47,83 @@ const ButtonFormText = styled.Text`
   font-family: ${(props) => props.font};
 `;
 
-export function Cadastro({ font }) {
-    return (
-        <>
-            <Title font={font}>Cadastro</Title>
-            <Form>
-                <LabelContent>
-                    <Label font={font}>Nome:</Label>
-                    <Input font={font} placeholder="Digite seu nome completo" />
-                </LabelContent>
+export function Cadastro({ font, onCadastroSuccess }) {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [loading, setLoading] = useState(false);
 
-                <LabelContent>
-                    <Label font={font}>Email:</Label>
-                    <Input font={font} placeholder="Digite seu email" />
-                </LabelContent>
+  const handleCadastro = async () => {
+    if (!nome || !email || !senha) {
+      alert('Preencha todos os campos');
+      return;
+    }
 
-                <LabelContent>
-                    <Label font={font}>Senha:</Label>
-                    <Input font={font} placeholder="Digite sua senha" secureTextEntry />
-                </LabelContent>
+    setLoading(true);
+    try {
+      const response = await api.post('/auth/register', {
+        nome,
+        email,
+        senha,
+      });
 
-                <ButtonForm>
-                    <ButtonFormText font={font}>Cadastrar</ButtonFormText>
-                </ButtonForm>
-            </Form>
-        </>
-    );
+      if (response.status === 201 || response.status === 200) {
+        alert('Cadastro realizado com sucesso!');
+        if (onCadastroSuccess) onCadastroSuccess(); // callback para navegar ou limpar formulário
+      } else {
+        alert('Erro ao cadastrar: ' + (response.data?.message || 'Tente novamente.'));
+      }
+    } catch (error) {
+      console.log('Erro no cadastro:', error.response?.data || error.message);
+      alert('Falha na conexão com a API.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <Title font={font}>Cadastro</Title>
+      <Form>
+        <LabelContent>
+          <Label font={font}>Nome:</Label>
+          <Input
+            font={font}
+            placeholder="Digite seu nome completo"
+            value={nome}
+            onChangeText={setNome}
+          />
+        </LabelContent>
+
+        <LabelContent>
+          <Label font={font}>Email:</Label>
+          <Input
+            font={font}
+            placeholder="Digite seu email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={setEmail}
+          />
+        </LabelContent>
+
+        <LabelContent>
+          <Label font={font}>Senha:</Label>
+          <Input
+            font={font}
+            placeholder="Digite sua senha"
+            secureTextEntry
+            value={senha}
+            onChangeText={setSenha}
+          />
+        </LabelContent>
+
+        <ButtonForm onPress={handleCadastro} disabled={loading}>
+          <ButtonFormText font={font}>
+            {loading ? 'Cadastrando...' : 'Cadastrar'}
+          </ButtonFormText>
+        </ButtonForm>
+      </Form>
+    </>
+  );
 }

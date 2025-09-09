@@ -1,37 +1,16 @@
-// import { StatusBar } from 'expo-status-bar';
-// import styled from 'styled-components/native';
-// import CadastroContent from './src/screens/cadastro-login';
-// import { useFonts } from "expo-font";
-
-
-// export default function App() {
-//   const [fontsLoaded] = useFonts({
-//     Coda: require("./src/assets/fonts/Coda-Regular.ttf"),
-//   });
-//   return (
-//     <Background source={require("./src/assets/images/background.png")}>
-//       <StatusBar hidden />
-//       <ContainerApp>
-//         <CadastroContent/>
-//       </ContainerApp>
-//     </Background>
-//   );
-// }
-
-// const ContainerApp = styled.SafeAreaView`
-//   flex :1
-// `
-// const Background = styled.ImageBackground`
-//   flex : 1;
-// `
-
-// export let font = "Coda"
+// npx expo start --tunnel
 import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components/native';
-import CadastroContent from './src/screens/cadastro-login';
 import { useFonts } from 'expo-font';
-import { View, ActivityIndicator } from 'react-native';
-import { Dashboard } from './src/screens/dashboard';
+import { ActivityIndicator } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Dashboard from './src/screens/dashboard';
+import LoginContent from './src/screens/login';
+import CadastroContent from './src/screens/cadastro';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -39,7 +18,6 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    // Mostra um loading enquanto a fonte carrega
     return (
       <LoadingContainer>
         <ActivityIndicator size="large" color="#7594AD" />
@@ -49,25 +27,34 @@ export default function App() {
 
   return (
     <Background source={require('./src/assets/images/background.png')}>
-      <StatusBar hidden />
-      <ContainerApp>
-        {/* <CadastroContent font="Coda" /> */}
-        <Dashboard font="Coda"/>
-      </ContainerApp>
+      <NavigationContainer>
+        <StatusBar hidden />
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="Login">
+            {props => <LoginContent {...props} font="Coda" />}
+          </Stack.Screen>
+          <Stack.Screen name="Cadastro">
+            {props => <CadastroContent {...props} font="Coda" />}
+          </Stack.Screen>
+          <Stack.Screen name="Dashboard">
+            {props => <Dashboard {...props} font="Coda" />}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
     </Background>
+
   );
 }
-
-const ContainerApp = styled.SafeAreaView`
-  flex: 1;
-`;
-
-const Background = styled.ImageBackground`
-  flex: 1;
-`;
 
 const LoadingContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+`;
+
+const Background = styled.ImageBackground`
+  flex: 1;
 `;

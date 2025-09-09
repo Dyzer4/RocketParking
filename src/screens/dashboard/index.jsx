@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { BlurView } from 'expo-blur';
 import { Cars } from '../../components/Cars';
+import { ScreenWrapper } from '../../components/Background';
 
 const Head = styled.View`
     display: flex;
@@ -79,9 +80,9 @@ const ListCars = styled.View`
     
 `
 
-export function Dashboard({font}) {
+export default function Dashboard({font}) {
     return (
-        <>
+        <ScreenWrapper>
             <Content>
                 <Head>
                     <Logo source={require("../../assets/images/Logo.png")}></Logo>
@@ -94,7 +95,7 @@ export function Dashboard({font}) {
                     <Cars font={font}/>
                 </ListCars>
             </Content>
-            {/* <SwitchButtons>
+            <SwitchButtons>
                 <SwitchBtnLogin>
                     <BtnText font={font}>Login</BtnText>
                 </SwitchBtnLogin>
@@ -102,7 +103,7 @@ export function Dashboard({font}) {
                 <SwitchBtnCadastro>
                     <BtnText font={font}>Cadastro</BtnText>
                 </SwitchBtnCadastro>
-            </SwitchButtons> */}
-        </>
+            </SwitchButtons>
+        </ScreenWrapper>
     )
 }
