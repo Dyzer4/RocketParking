@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import api from '../../api'; // importe o arquivo que criamos
+import api from '../../api';
 
 const Title = styled.Text`
   font-size: 24px;

@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { BlurView } from 'expo-blur';
 import { Cars } from '../../components/Cars';
 import { ScreenWrapper } from '../../components/Background';
+import SwitchButtons  from '../../components/SwitchButtons';
 
 const Head = styled.View`
     display: flex;
@@ -31,38 +32,9 @@ const Content = styled(BlurView).attrs({
   background-color: rgba(255, 255, 255, 0.5);
   padding: 32px 10px;
   border-radius: 20px;
-  margin: 0 40px;
+  margin: 50px 40px;
   overflow: hidden;
   elevation: 5;
-`;
-
-const SwitchButtons = styled.View`
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    margin-top: 5%;
-    position: absolute;
-    bottom: 6%;
-`;
-
-const SwitchBtnLogin = styled.Pressable`
-  background-color: ${(props) => (props.ativo ? '#7594AD' : '#BEC9D3')};
-  border-radius: 20px 0 0 20px;
-  border-right: 1px solid;
-  padding: 17px 64px;
-`;
-
-const SwitchBtnCadastro = styled.Pressable`
-  background-color: ${(props) => (props.ativo ? '#7594AD' : '#BEC9D3')};
-  border-radius: 0 20px 20px 0;
-  border-left: 1px solid;
-  padding: 17px 64px;
-`;
-
-
-const BtnText = styled.Text`
-    font-family: ${(props) => props.font};
-    text-transform: uppercase;
 `;
 
 const BtnUser = styled.Pressable`
@@ -80,7 +52,7 @@ const ListCars = styled.View`
     
 `
 
-export default function Dashboard({font}) {
+export default function Dashboard({font, navigation}) {
     return (
         <ScreenWrapper>
             <Content>
@@ -95,15 +67,7 @@ export default function Dashboard({font}) {
                     <Cars font={font}/>
                 </ListCars>
             </Content>
-            <SwitchButtons>
-                <SwitchBtnLogin>
-                    <BtnText font={font}>Login</BtnText>
-                </SwitchBtnLogin>
-
-                <SwitchBtnCadastro>
-                    <BtnText font={font}>Cadastro</BtnText>
-                </SwitchBtnCadastro>
-            </SwitchButtons>
+            <SwitchButtons font={font} navigation={navigation}/>
         </ScreenWrapper>
     )
 }

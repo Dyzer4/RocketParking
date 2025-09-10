@@ -26,13 +26,6 @@ const LogoCadastro = styled.Image`
     margin-bottom: 5%;
 `;
 
-const SwitchButtons = styled.View`
-    flex-direction: row;
-    align-self: center;
-    position: absolute;
-    bottom: 6%;
-`;
-
 const SwitchBtn = styled.Pressable`
   background-color: ${(props) => (props.ativo ? '#7594AD' : '#BEC9D3')};
   padding: 17px 64px;
@@ -45,6 +38,13 @@ const SwitchBtn = styled.Pressable`
 const BtnText = styled.Text`
     font-family: ${(props) => props.font};
     text-transform: uppercase;
+`;
+
+const SwitchBtns = styled.View`
+    flex-direction: row;
+    align-self: center;
+    position: absolute;
+    bottom: 6%;
 `;
 
 export default function CadastroContent({ font, navigation }) {
@@ -62,7 +62,7 @@ export default function CadastroContent({ font, navigation }) {
                 <Cadastro font={font} />
             </Content>
 
-            <SwitchButtons>
+            <SwitchBtns>
                 <SwitchBtn
                     left
                     ativo={ativo === 'Login'}
@@ -77,7 +77,7 @@ export default function CadastroContent({ font, navigation }) {
                 >
                     <BtnText font={font}>Cadastro</BtnText>
                 </SwitchBtn>
-            </SwitchButtons>
+            </SwitchBtns>
         </ScreenWrapper>
     );
 }

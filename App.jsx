@@ -9,6 +9,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Dashboard from './src/screens/dashboard';
 import LoginContent from './src/screens/login';
 import CadastroContent from './src/screens/cadastro';
+import Entrada from './src/screens/entrada';
+import Saida from './src/screens/saida';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,9 +30,8 @@ export default function App() {
   return (
     <Background source={require('./src/assets/images/background.png')}>
       <NavigationContainer>
-        <StatusBar hidden />
         <Stack.Navigator
-          initialRouteName="Login"
+          initialRouteName="Saida"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Login">
@@ -41,6 +42,12 @@ export default function App() {
           </Stack.Screen>
           <Stack.Screen name="Dashboard">
             {props => <Dashboard {...props} font="Coda" />}
+          </Stack.Screen>
+          <Stack.Screen name="Entrada">
+            {props => <Entrada {...props} font="Coda" />}
+          </Stack.Screen>
+          <Stack.Screen name="Saida">
+            {props => <Saida {...props} font="Coda" />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
