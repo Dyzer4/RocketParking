@@ -66,14 +66,14 @@ const Input = styled.TextInput`
   font-family: ${(props) => props.font};
 `;
 
-export default function Entrada({font, navigation}) {
+export default function Saida({font, navigation}) {
     return (
         <ScreenWrapper>
             <Content>
                 <Head>
                     <Logo source={require("../../assets/images/Logo.png")}></Logo>
                     <Title font={font}>Saída</Title>
-                    <BtnReturn/>
+                    <BtnReturn navigation={navigation}/>
                 </Head>
                 <LabelContent>
                     <Label font={font}>

@@ -28,11 +28,15 @@ const LogoCadastro = styled.Image`
 
 const SwitchBtn = styled.Pressable`
   background-color: ${(props) => (props.ativo ? '#7594AD' : '#BEC9D3')};
-  padding: 17px 64px;
   border-radius: ${(props) => (props.left ? '20px 0 0 20px' : '0 20px 20px 0')};
   border-left-width: ${(props) => (props.left ? 0 : 1)}px;
   border-right-width: ${(props) => (props.left ? 1 : 0)}px;
-  border-color: #fff;
+  border-color: #000;
+  width: 50%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const BtnText = styled.Text`
@@ -45,6 +49,7 @@ const SwitchBtns = styled.View`
     align-self: center;
     position: absolute;
     bottom: 6%;
+    margin: 0 20%;
 `;
 
 export default function CadastroContent({ font, navigation }) {

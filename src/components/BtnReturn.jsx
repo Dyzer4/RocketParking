@@ -14,7 +14,7 @@ const ReturnIcon = styled.Image`
 export function BtnReturn({navigation}) {
 
     return (
-        <ReturnBtn>
+        <ReturnBtn onPress={() => navigation.navigate("Dashboard")}>
             <ReturnIcon source={require("../assets/images/return-icon.png")} />
         </ReturnBtn>
     )

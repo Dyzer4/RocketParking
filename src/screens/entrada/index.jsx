@@ -3,6 +3,7 @@ import { BlurView } from 'expo-blur';
 import { ScreenWrapper } from '../../components/Background';
 import SwitchButtons  from '../../components/SwitchButtons';
 import { BtnReturn } from '../../components/BtnReturn';
+import { EntradaForm } from '../../components/Entrada';
 
 const Head = styled.View`
     display: flex;
@@ -48,23 +49,7 @@ const UserIcon = styled.Image`
     height: 15px;
 `
 
-const LabelContent = styled.View`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`;
 
-const Label = styled.Text`
-  font-size: 20px;
-  font-family: ${(props) => props.font};
-`;
-
-const Input = styled.TextInput`
-  padding: 13px 15px;
-  background-color: #BEC9D3;
-  border-radius: 20px;
-  font-family: ${(props) => props.font};
-`;
 
 export default function Entrada({font, navigation}) {
     return (
@@ -73,14 +58,9 @@ export default function Entrada({font, navigation}) {
                 <Head>
                     <Logo source={require("../../assets/images/Logo.png")}></Logo>
                     <Title font={font}>Entrada</Title>
-                    <BtnReturn/>
+                    <BtnReturn navigation={navigation}/>
                 </Head>
-                <LabelContent>
-                    <Label font={font}>
-                        Placa:
-                    </Label>
-                    <Input font={font}></Input>
-                </LabelContent>
+                <EntradaForm font={font}/>
             </Content>
             <SwitchButtons font={font} navigation={navigation}/>
         </ScreenWrapper>
