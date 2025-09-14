@@ -31,7 +31,7 @@ export default function App() {
     <Background source={require('./src/assets/images/background.png')}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Saida"
+          initialRouteName="Cadastro"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Login">

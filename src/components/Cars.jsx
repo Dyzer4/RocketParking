@@ -37,7 +37,6 @@ export function Cars({ font }) {
     const fetchData = async () => {
         try {
             const response = await axios.get("http://192.168.0.102:8080/api/veiculos");
-            console.log("🚀 Dados recebidos:", response.data);
 
             // Inverte a lista para exibir o mais recente primeiro
             const sortedData = [...response.data].reverse();

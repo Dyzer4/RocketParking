@@ -62,11 +62,11 @@ export function Login({ font, navigation, onLoginSuccess }) {
   setLoading(true);
   try {
     const response = await api.post('/auth/login', { email, senha });
+    
 
     if (response.status === 200) {
       const { token } = response.data;
       await AsyncStorage.setItem('@token', token); 
-      console.log('Token salvo:', token);
       
       // Navegar para dashboard
       navigation.replace('Dashboard'); // substitui a tela de login

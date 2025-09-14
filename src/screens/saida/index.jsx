@@ -3,6 +3,7 @@ import { BlurView } from 'expo-blur';
 import { ScreenWrapper } from '../../components/Background';
 import SwitchButtons  from '../../components/SwitchButtons';
 import { BtnReturn } from '../../components/BtnReturn';
+import { SaidaForm } from '../../components/Saida';
 
 const Head = styled.View`
     display: flex;
@@ -75,12 +76,7 @@ export default function Saida({font, navigation}) {
                     <Title font={font}>Saída</Title>
                     <BtnReturn navigation={navigation}/>
                 </Head>
-                <LabelContent>
-                    <Label font={font}>
-                        Placa:
-                    </Label>
-                    <Input font={font}></Input>
-                </LabelContent>
+                <SaidaForm font={font}/>
             </Content>
             <SwitchButtons font={font} navigation={navigation}/>
         </ScreenWrapper>
