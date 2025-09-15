@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import axios from "axios";
 import { FlatList, ActivityIndicator } from "react-native";
+import api from "../../api";
 
 // Styled Components
 const ContentCars = styled.View`
@@ -36,7 +37,7 @@ export function Cars({ font }) {
     // Função para buscar os dados
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://192.168.0.102:8080/api/veiculos");
+            const response = await api.get("/api/veiculos");
 
             // Inverte a lista para exibir o mais recente primeiro
             const sortedData = [...response.data].reverse();

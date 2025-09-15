@@ -75,7 +75,7 @@ export function Login({ font, navigation, onLoginSuccess }) {
     } else if (response.status === 403) {
       alert('Acesso proibido: verifique suas credenciais.');
     } else {
-      alert('Erro no login: ' + (response.data?.message || 'Tente novamente.'));
+      alert('Erro ao fazer login: ' + (response.data?.message || 'Tente novamente.'));
     }
   } catch (error) {
     console.log('Erro no login:', error.response?.data || error.message);

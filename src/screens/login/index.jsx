@@ -31,12 +31,11 @@ const SwitchButtons = styled.View`
     align-self: center;
     position: absolute;
     bottom: 6%;
-    margin: 0 20%;
+    margin: 0 40px;
 `;
 
 const SwitchBtn = styled.Pressable`
   background-color: ${(props) => (props.ativo ? '#7594AD' : '#BEC9D3')};
-  padding: 17px 64px;
   border-radius: ${(props) => (props.left ? '20px 0 0 20px' : '0 20px 20px 0')};
   border-left-width: ${(props) => (props.left ? 0 : 1)}px;
   border-right-width: ${(props) => (props.left ? 1 : 0)}px;
@@ -54,12 +53,11 @@ const BtnText = styled.Text`
 `;
 
 export default function LoginContent({ font, navigation }) {
-    // estado para controlar qual botão está ativo
     const [ativo, setAtivo] = useState('Login');
 
     const handleSwitch = (tela) => {
         setAtivo(tela);
-        navigation.navigate(tela);
+        navigation.replace(tela);
     };
 
     return (
@@ -77,7 +75,7 @@ export default function LoginContent({ font, navigation }) {
                 >
                     <BtnText font={font}>Login</BtnText>
                 </SwitchBtn>
-
+                
                 <SwitchBtn
                     ativo={ativo === 'Cadastro'}
                     onPress={() => handleSwitch('Cadastro')}

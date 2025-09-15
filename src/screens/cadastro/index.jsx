@@ -13,7 +13,7 @@ const Content = styled(BlurView).attrs({
   background-color: rgba(255, 255, 255, 0.5);
   padding: 32px 10px;
   border-radius: 20px;
-  margin: 0 40px;
+  margin: -10% 40px 20px 40px;
   overflow: hidden;
   elevation: 5;
 `;
@@ -23,7 +23,7 @@ const LogoCadastro = styled.Image`
     margin-top: 53px;
     width: 240px;
     height: 240px;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 `;
 
 const SwitchBtn = styled.Pressable`
@@ -47,9 +47,8 @@ const BtnText = styled.Text`
 const SwitchBtns = styled.View`
     flex-direction: row;
     align-self: center;
-    position: absolute;
-    bottom: 6%;
-    margin: 0 20%;
+    position: relative;
+    margin: 0 40px;
 `;
 
 export default function CadastroContent({ font, navigation }) {
@@ -57,7 +56,7 @@ export default function CadastroContent({ font, navigation }) {
 
     const handleSwitch = (tela) => {
         setAtivo(tela);
-        navigation.navigate(tela);
+        navigation.replace(tela);
     };
 
     return (
