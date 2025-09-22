@@ -113,6 +113,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             font={font}
             placeholder="Digite sua senha"
             secureTextEntry
+            autoCapitalize="none"
             value={senha}
             onChangeText={setSenha}
           />

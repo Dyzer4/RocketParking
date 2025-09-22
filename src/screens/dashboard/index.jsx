@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 import { BlurView } from 'expo-blur';
 import { Cars } from '../../components/Cars';
 import { ScreenWrapper } from '../../components/Background';
-import SwitchButtons  from '../../components/SwitchButtons';
 
 const Head = styled.View`
     display: flex;
@@ -35,6 +34,7 @@ const Content = styled(BlurView).attrs({
   margin: 50px 40px;
   overflow: hidden;
   elevation: 5;
+  width: 85%;
 `;
 
 const BtnUser = styled.Pressable`
@@ -54,7 +54,6 @@ const ListCars = styled.View`
 
 export default function Dashboard({font, navigation}) {
     return (
-        <ScreenWrapper>
             <Content>
                 <Head>
                     <Logo source={require("../../assets/images/Logo.png")}></Logo>
@@ -67,7 +66,5 @@ export default function Dashboard({font, navigation}) {
                     <Cars font={font}/>
                 </ListCars>
             </Content>
-            <SwitchButtons font={font} navigation={navigation}/>
-        </ScreenWrapper>
     )
 }

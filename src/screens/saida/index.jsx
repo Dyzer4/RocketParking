@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import { BlurView } from 'expo-blur';
 import { ScreenWrapper } from '../../components/Background';
-import SwitchButtons  from '../../components/SwitchButtons';
 import { BtnReturn } from '../../components/BtnReturn';
 import { SaidaForm } from '../../components/Saida';
 
@@ -25,8 +24,8 @@ const Title = styled.Text`
 `
 
 const Content = styled(BlurView).attrs({
-    intensity: 100,
-    tint: 'light'
+  intensity: 100,
+  tint: 'light'
 })`
   display:flex;
   justify-content: center;
@@ -36,6 +35,7 @@ const Content = styled(BlurView).attrs({
   margin: 50px 40px;
   overflow: hidden;
   elevation: 5;
+  width: 85%;
 `;
 
 const BtnUser = styled.Pressable`
@@ -67,18 +67,15 @@ const Input = styled.TextInput`
   font-family: ${(props) => props.font};
 `;
 
-export default function Saida({font, navigation}) {
-    return (
-        <ScreenWrapper>
-            <Content>
-                <Head>
-                    <Logo source={require("../../assets/images/Logo.png")}></Logo>
-                    <Title font={font}>Saída</Title>
-                    <BtnReturn navigation={navigation}/>
-                </Head>
-                <SaidaForm font={font}/>
-            </Content>
-            <SwitchButtons font={font} navigation={navigation}/>
-        </ScreenWrapper>
-    )
+export default function Saida({ font, navigation }) {
+  return (
+    <Content>
+      <Head>
+        <Logo source={require("../../assets/images/Logo.png")}></Logo>
+        <Title font={font}>Saída</Title>
+        <BtnReturn navigation={navigation} />
+      </Head>
+      <SaidaForm font={font} />
+    </Content>
+  )
 }
