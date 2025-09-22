@@ -1,20 +1,22 @@
 import styled from 'styled-components/native';
 import { BlurView } from 'expo-blur';
-import { ScreenWrapper } from '../../components/Background';
-import { BtnReturn } from '../../components/BtnReturn';
 import { EntradaForm } from '../../components/Entrada';
 
 const Head = styled.View`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
+    justify-content: center;
 `
 
 const Logo = styled.Image`
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: -15px;
+    top: -30px;
 `
 
 const Title = styled.Text`
@@ -38,26 +40,12 @@ const Content = styled(BlurView).attrs({
   width: 85%;
 `;
 
-const BtnUser = styled.Pressable`
-    background-color: #7594AD;
-    padding: 10px;
-    border-radius: 10px;
-`
-
-const UserIcon = styled.Image`
-    width: 15px;
-    height: 15px;
-`
-
-
-
 export default function Entrada({ font, navigation }) {
     return (
         <Content>
             <Head>
                 <Logo source={require("../../assets/images/Logo.png")}></Logo>
                 <Title font={font}>Entrada</Title>
-                <BtnReturn navigation={navigation} />
             </Head>
             <EntradaForm font={font} />
         </Content>

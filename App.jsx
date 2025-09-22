@@ -1,21 +1,22 @@
-
 import styled from 'styled-components/native';
 import { useFonts } from 'expo-font';
 import { ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useEffect } from 'react';
+import * as NavigationBar from 'expo-navigation-bar';
+import { StatusBar } from 'expo-status-bar'; 
 
-import LoginContent from './src/screens/authContent';
-import CadastroContent from './src/screens/cadastro';
+import AuthContent from './src/screens/authContent';
 import Dashboard from './src/screens/dashboard';
 import Entrada from './src/screens/entrada';
 import Saida from './src/screens/saida';
+import Perfil from './src/screens/perfil'
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// Wrapper para aplicar background e overlay em qualquer tela
 function withScreenWrapper(Component, extraProps = {}) {
   return (props) => (
     <Background source={require('./src/assets/images/background.png')}>
@@ -26,10 +27,47 @@ function withScreenWrapper(Component, extraProps = {}) {
   );
 }
 
-// Tabs do app (ex.: Dashboard e outras futuras)
 function MainTabs() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarShowLabel: true,
+        tabBarActiveTintColor: '#4A90E2',
+        tabBarInactiveTintColor: '#ccc',
+        tabBarLabelStyle: {
+          fontFamily: 'Coda',
+          fontSize: 12,
+        },
+        tabBarStyle: {
+          backgroundColor: '#fff',
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          height: 65,
+          position: 'absolute',
+          paddingBottom: 5,
+          shadowColor: '#000',
+          shadowOpacity: 0.1,
+          shadowOffset: { width: 0, height: -2 },
+          shadowRadius: 5,
+          elevation: 5,
+        },
+        tabBarIcon: ({ color }) => {
+          let iconName;
+          if (route.name === 'Dashboard') {
+            iconName = 'home';
+          } else if (route.name === 'Entrada') {
+            iconName = 'arrow-down';
+          } else if (route.name === 'Saida') {
+            iconName = 'arrow-up';
+          } else if (route.name === 'Perfil'){
+            iconName = 'user'
+          }
+          const { Feather } = require('@expo/vector-icons');
+          return <Feather name={iconName} size={22} color={color} />;
+        },
+      })}
+    >
       <Tab.Screen
         name="Dashboard"
         component={withScreenWrapper(Dashboard, { font: 'Coda' })}
@@ -42,12 +80,21 @@ function MainTabs() {
         name="Saida"
         component={withScreenWrapper(Saida, { font: 'Coda' })}
       />
-      
+      <Tab.Screen
+        name="Perfil"
+        component={withScreenWrapper(Perfil, { font: 'Coda' })}
+      />
     </Tab.Navigator>
   );
 }
 
 export default function App() {
+  useEffect(() => {
+    NavigationBar.setBackgroundColorAsync('transparent');
+    NavigationBar.setVisibilityAsync('hidden');
+    NavigationBar.setBehaviorAsync('overlay-swipe');
+  }, []);
+
   const [fontsLoaded] = useFonts({
     Coda: require('./src/assets/fonts/Coda-Regular.ttf'),
   });
@@ -62,14 +109,11 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <StatusBar hidden />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen
-          name="Login"
-          component={withScreenWrapper(LoginContent, { font: 'Coda' })}
-        />
-        <Stack.Screen
-          name="Cadastro"
-          component={withScreenWrapper(CadastroContent, { font: 'Coda' })}
+          name="Auth"
+          component={withScreenWrapper(AuthContent, { font: 'Coda' })}
         />
         <Stack.Screen name="MainTabs" component={MainTabs} />
       </Stack.Navigator>
@@ -77,7 +121,6 @@ export default function App() {
   );
 }
 
-// ====== Styled Components ======
 const LoadingContainer = styled.View`
   flex: 1;
   justify-content: center;

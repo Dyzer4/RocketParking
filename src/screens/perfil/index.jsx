@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { BlurView } from 'expo-blur';
-import { SaidaForm } from '../../components/Saida';
+import { UserContent } from '../../components/UserContent';
 
 const Head = styled.View`
     display: flex;
@@ -40,15 +40,14 @@ const Content = styled(BlurView).attrs({
   width: 85%;
 `;
 
-
-export default function Saida({ font }) {
+export default function Perfil({ font, navigation }) {
   return (
     <Content>
       <Head>
         <Logo source={require("../../assets/images/Logo.png")}></Logo>
-        <Title font={font}>Saída</Title>
+        <Title font={font}>Perfil</Title>
       </Head>
-      <SaidaForm font={font} />
+      <UserContent font={font} />
     </Content>
   )
 }

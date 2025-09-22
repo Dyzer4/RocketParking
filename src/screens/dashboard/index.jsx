@@ -1,19 +1,22 @@
 import styled from 'styled-components/native';
 import { BlurView } from 'expo-blur';
 import { Cars } from '../../components/Cars';
-import { ScreenWrapper } from '../../components/Background';
 
 const Head = styled.View`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
+    justify-content: center;
 `
 
 const Logo = styled.Image`
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: -15px;
+    top: -30px;
 `
 
 const Title = styled.Text`
@@ -58,9 +61,6 @@ export default function Dashboard({font, navigation}) {
                 <Head>
                     <Logo source={require("../../assets/images/Logo.png")}></Logo>
                     <Title font={font}>Veículos ativos</Title>
-                    <BtnUser>
-                        <UserIcon source={require("../../assets/images/user-icon.png")}/>
-                    </BtnUser>
                 </Head>
                 <ListCars>
                     <Cars font={font}/>
