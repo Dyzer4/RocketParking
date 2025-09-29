@@ -67,7 +67,7 @@ export function EntradaForm({ font, onCadastroSuccess }) {
     setLoading(true);
     try {
       // Envia no formato correto
-      const token = await AsyncStorage.getItem("token");
+      const token = await AsyncStorage.getItem("@token");
       const response = await api.post(
         "/api/veiculos/entrada",
         { placa },

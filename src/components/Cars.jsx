@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
-import axios from "axios";
 import { FlatList, ActivityIndicator } from "react-native";
 import api from "../../api";
 

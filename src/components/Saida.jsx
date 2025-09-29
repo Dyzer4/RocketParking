@@ -44,7 +44,7 @@ const ResponseEntrada = styled.View`
 
 const DataHoraEntrada = styled.View``;
 
-// ==================== Componente ====================
+
 export function SaidaForm({ font, onCadastroSuccess }) {
   const [placa, setPlaca] = useState("");
   const [loading, setLoading] = useState(false);
@@ -57,7 +57,6 @@ export function SaidaForm({ font, onCadastroSuccess }) {
       return;
     }
 
-    // Regex: aceita placa antiga e Mercosul
     const regexPlaca = /^[A-Z]{3}-?\d{4}$|^[A-Z]{3}\d[A-Z]\d{2}$/;
     if (!regexPlaca.test(placa)) {
       alert("Placa inválida. Formatos aceitos: ABC1234 ou ABC1D23");
@@ -66,8 +65,8 @@ export function SaidaForm({ font, onCadastroSuccess }) {
 
     setLoading(true);
     try {
-      // Envia no formato correto
-      const token = await AsyncStorage.getItem("token");
+
+      const token = await AsyncStorage.getItem("@token");
       const response = await api.put(
         "/api/veiculos/saida",
         { placa },
@@ -79,8 +78,6 @@ export function SaidaForm({ font, onCadastroSuccess }) {
 
         setMensagem(mensagem || "Saída liberada!");
         setVeiculo(veiculo || null);
-
-        // limpa o input após sucesso
         setPlaca("");
 
         if (onCadastroSuccess) onCadastroSuccess();
@@ -107,7 +104,6 @@ export function SaidaForm({ font, onCadastroSuccess }) {
           autoCapitalize="characters"
           value={placa}
           onChangeText={(text) => {
-            // Normaliza (remove caracteres inválidos e deixa maiúsculo)
             let cleaned = text.replace(/[^A-Z0-9]/gi, "");
             cleaned = cleaned.toUpperCase();
             setPlaca(cleaned);

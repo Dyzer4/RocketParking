@@ -4,8 +4,6 @@ import api from "../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
-// ==================== Styled Components ====================
-
 const Label = styled.Text`
   font-size: 20px;
   font-family: ${(props) => props.font};
@@ -31,18 +29,16 @@ const ResponseEntrada = styled.View`
   margin-top: 20px;
 `;
 
-// ==================== Componente ====================
 export function UserContent({ font, onCadastroSuccess }) {
   const [loading, setLoading] = useState(false);
   const [usuario, setUsuario] = useState(null);
-  const navigation = useNavigation(); // ✅ agora navigation vem daqui
+  const navigation = useNavigation();
 
-  // Buscar dados do usuário ao montar o componente
   useEffect(() => {
     const fetchUser = async () => {
       setLoading(true);
       try {
-        const token = await AsyncStorage.getItem("token");
+        const token = await AsyncStorage.getItem("@token");
         const response = await api.get("/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -58,6 +54,7 @@ export function UserContent({ font, onCadastroSuccess }) {
         }
       } catch (error) {
         alert("Falha na conexão com a API.");
+        console.log(await AsyncStorage.getItem("token"))
       } finally {
         setLoading(false);
       }
@@ -66,13 +63,12 @@ export function UserContent({ font, onCadastroSuccess }) {
     fetchUser();
   }, []);
 
-  // Função de logoff
   const handleLogoff = async () => {
     setLoading(true);
     try {
       await AsyncStorage.removeItem("token");
       setUsuario(null);
-      navigation.navigate("Auth"); // ✅ usa navigation direto
+      navigation.navigate("Auth"); 
     } catch (error) {
       alert("Erro ao deslogar.");
     } finally {

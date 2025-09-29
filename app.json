@@ -20,10 +20,16 @@
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.dyzer4.RocketParking"
     },
     "web": {
       "favicon": "./src/assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9cd16d67-a32f-4a06-841d-7293344eda0c"
+      }
     }
   }
 }

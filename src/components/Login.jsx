@@ -28,12 +28,11 @@ export function Login({ navigation }) {
       if (response.status === 200) {
         const { token } = response.data;
         await AsyncStorage.setItem('@token', token); 
-        navigation.replace('MainTabs'); // navega para dashboard
+        navigation.replace('MainTabs'); 
       } else {
         alert('Erro: ' + (response.data?.message || 'Tente novamente.'));
       }
     } catch (error) {
-      console.log(email, senha)
       console.log('Erro no login:', error.response?.data || error.message);
       alert('Falha na conexão ou credenciais inválidas.');
     } finally {

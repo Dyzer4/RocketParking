@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import React from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 
 const BtnEntrada = styled.Pressable`
@@ -42,8 +41,8 @@ const Switch = styled.View`
 `;
 
 export default function SwitchButtons({ font }) {
-  const route = useRoute();       // pega a rota atual
-  const navigation = useNavigation(); // pega navigation do contexto
+  const route = useRoute();     
+  const navigation = useNavigation(); 
 
   return (
     <Switch>
