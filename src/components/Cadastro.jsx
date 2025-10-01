@@ -104,6 +104,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             autoCapitalize="none"
             value={email}
             onChangeText={setEmail}
+            placeholderTextColor="black"
           />
         </LabelContent>
 
@@ -116,6 +117,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             autoCapitalize="none"
             value={senha}
             onChangeText={setSenha}
+            placeholderTextColor="black"
           />
         </LabelContent>
 

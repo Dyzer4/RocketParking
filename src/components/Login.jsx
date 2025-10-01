@@ -45,9 +45,9 @@ export function Login({ navigation }) {
       <Title>Login</Title>
       <Form>
         <Label>Email:</Label>
-        <Input placeholder="Digite seu email" keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
+        <Input placeholderTextColor="black" placeholder="Digite seu email" keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
         <Label>Senha:</Label>
-        <Input placeholder="Digite sua senha" secureTextEntry autoCapitalize="none" value={senha} onChangeText={setSenha} />
+        <Input placeholderTextColor="black" placeholder="Digite sua senha" secureTextEntry autoCapitalize="none" value={senha} onChangeText={setSenha} />
         <ButtonForm onPress={handleLogin} disabled={loading}>
           <ButtonFormText>{loading ? 'Carregando...' : 'Entrar'}</ButtonFormText>
         </ButtonForm>
