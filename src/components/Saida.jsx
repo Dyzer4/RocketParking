@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { useState } from "react";
 import api from "../../api"; // ajuste o caminho do seu axios/api
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import GifSaida from '../assets/images/GifSaidaEntrada.gif';
 
 // ==================== Styled Components ====================
 const LabelContent = styled.View`
@@ -43,6 +44,12 @@ const ResponseEntrada = styled.View`
 `;
 
 const DataHoraEntrada = styled.View``;
+
+const ImageGif = styled.Image`
+  width: 100px;
+  height: 100px;
+  align-self: center;
+`
 
 
 export function SaidaForm({ font, onCadastroSuccess }) {
@@ -119,15 +126,17 @@ export function SaidaForm({ font, onCadastroSuccess }) {
 
       {veiculo && (
         <ResponseEntrada>
-          {mensagem ? <Label font={font}>{mensagem}</Label> : null}
-          <Label font={font}>Placa: {veiculo.placa}</Label>
+          <ImageGif source={GifSaida}/>
+          {mensagem ? <Label font={font} style={{ alignSelf:"center", marginBottom: "5%" }}>{mensagem}</Label> : null}
+          <Label font={font} style={{ alignSelf:"center" }}>Placa: {veiculo.placa}</Label>
+          <Label font={font} style={{ alignSelf:"center", marginBottom: "5%" }}>Valor Total: R${veiculo.valorPago},00</Label>
           <DataHoraEntrada>
             <Label font={font}>Data de Entrada: {veiculo.dataEntrada}</Label>
             <Label font={font}>Hora de Entrada: {veiculo.horarioEntrada}</Label>
             <Label font={font}>Data de Saída: {veiculo.dataEntrada}</Label>
             <Label font={font}>Hora de Saída: {veiculo.horarioEntrada}</Label>
           </DataHoraEntrada>
-          <Label font={font}>Valor Total: R${veiculo.valorPago},00</Label>
+          
         </ResponseEntrada>
       )}
     </>

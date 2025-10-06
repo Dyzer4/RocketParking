@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { useState } from "react";
 import api from "../../api"; // ajuste o caminho do seu axios/api
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import GifSaida from '../assets/images/GifSaidaEntrada.gif';
 
 // ==================== Styled Components ====================
 const LabelContent = styled.View`
@@ -44,6 +45,11 @@ const ResponseEntrada = styled.View`
 
 const DataHoraEntrada = styled.View``;
 
+const ImageGif = styled.Image`
+  width: 100px;
+  height: 100px;
+  align-self: center;
+`
 // ==================== Componente ====================
 export function EntradaForm({ font, onCadastroSuccess }) {
   const [placa, setPlaca] = useState("");
@@ -124,8 +130,9 @@ export function EntradaForm({ font, onCadastroSuccess }) {
 
       {veiculo && (
         <ResponseEntrada>
-          {mensagem ? <Label font={font}>{mensagem}</Label> : null}
-          <Label font={font}>Placa: {veiculo.placa}</Label>
+          <ImageGif source={GifSaida}/>
+          {mensagem ? <Label font={font} style={{ alignSelf:"center", marginBottom: "5%" }}>{mensagem}</Label> : null}
+          <Label font={font} style={{ alignSelf:"center", marginBottom: "5%" }}>Placa: {veiculo.placa}</Label>
           <DataHoraEntrada>
             <Label font={font}>Data de entrada: {veiculo.dataEntrada}</Label>
             <Label font={font}>Hora de entrada: {veiculo.horarioEntrada}</Label>
