@@ -32,6 +32,7 @@ const Input = styled.TextInput`
   background-color: #BEC9D3;
   border-radius: 20px;
   font-family: ${(props) => props.font};
+  color: #000;
 `;
 
 const ButtonForm = styled.Pressable`
@@ -92,6 +93,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             placeholder="Digite seu nome completo"
             value={nome}
             onChangeText={setNome}
+            placeholderTextColor="#7594AD"
           />
         </LabelContent>
 
@@ -104,7 +106,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             autoCapitalize="none"
             value={email}
             onChangeText={setEmail}
-            placeholderTextColor="black"
+            placeholderTextColor="#7594AD"
           />
         </LabelContent>
 
@@ -117,7 +119,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             autoCapitalize="none"
             value={senha}
             onChangeText={setSenha}
-            placeholderTextColor="black"
+            placeholderTextColor="#7594AD"
           />
         </LabelContent>
 

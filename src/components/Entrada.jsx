@@ -76,8 +76,7 @@ export function EntradaForm({ font, onCadastroSuccess }) {
       const token = await AsyncStorage.getItem("@token");
       const response = await api.post(
         "/api/veiculos/entrada",
-        { placa },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { placa }
       );
 
       if (response.status === 200 || response.status === 201) {
