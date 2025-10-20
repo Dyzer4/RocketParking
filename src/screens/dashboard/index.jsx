@@ -32,27 +32,16 @@ const Content = styled(BlurView).attrs({
   display:flex;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 32px 10px;
+  padding: 20px 10px;
   border-radius: 20px;
-  margin: 50px 40px;
+  margin: 50px 30px;
   overflow: hidden;
   elevation: 5;
   width: 85%;
 `;
 
-const BtnUser = styled.Pressable`
-    background-color: #7594AD;
-    padding: 10px;
-    border-radius: 10px;
-`
-
-const UserIcon = styled.Image`
-    width: 15px;
-    height: 15px;
-`
-
 const ListCars = styled.View`
-    
+    max-height: 85%;
 `
 
 export default function Dashboard({font, navigation}) {

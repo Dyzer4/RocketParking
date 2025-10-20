@@ -73,6 +73,7 @@ export function Cars({ font }) {
         setRefreshing(true);
         fetchData();
       }}
+      style={{ maxHeight: "100%" }}
       renderItem={({ item }) => (
         <ContentCars>
           <Title font={font}>Placa: {item.placa}</Title>
