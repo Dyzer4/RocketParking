@@ -132,8 +132,8 @@ export function SaidaForm({ font, onCadastroSuccess }) {
           <DataHoraEntrada>
             <Label font={font}>Data de Entrada: {veiculo.dataEntrada}</Label>
             <Label font={font}>Hora de Entrada: {veiculo.horarioEntrada}</Label>
-            <Label font={font}>Data de Saída: {veiculo.dataEntrada}</Label>
-            <Label font={font}>Hora de Saída: {veiculo.horarioEntrada}</Label>
+            <Label font={font}>Data de Saída: {veiculo.dataSaida}</Label>
+            <Label font={font}>Hora de Saída: {veiculo.horarioSaida}</Label>
           </DataHoraEntrada>
           
         </ResponseEntrada>
