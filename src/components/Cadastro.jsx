@@ -76,7 +76,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
       }
     } catch (error) {
       console.log('Erro no cadastro:', error.response?.data || error.message);
-      alert('Falha na conexão com a API.');
+      alert(error.response?.data.message|| error.message);
     } finally {
       setLoading(false);
     }

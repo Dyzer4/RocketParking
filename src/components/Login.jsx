@@ -34,7 +34,7 @@ export function Login({ navigation }) {
       }
     } catch (error) {
       console.log('Erro no login:', error.response?.data || error.message);
-      alert('Falha na conexão ou credenciais inválidas.');
+      alert(error.response?.data.message|| error.message);
     } finally {
       setLoading(false);
     }
