@@ -93,7 +93,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             placeholder="Digite seu nome completo"
             value={nome}
             onChangeText={setNome}
-            placeholderTextColor="#7594AD"
+            placeholderTextColor="#000"
           />
         </LabelContent>
 
@@ -106,7 +106,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             autoCapitalize="none"
             value={email}
             onChangeText={setEmail}
-            placeholderTextColor="#7594AD"
+            placeholderTextColor="#000"
           />
         </LabelContent>
 
@@ -119,7 +119,7 @@ export function Cadastro({ font, onCadastroSuccess }) {
             autoCapitalize="none"
             value={senha}
             onChangeText={setSenha}
-            placeholderTextColor="#7594AD"
+            placeholderTextColor="#000"
           />
         </LabelContent>
 
